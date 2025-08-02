@@ -23,6 +23,7 @@ import (
 	"github.com/astaxie/beego/context"
 	"github.com/bmizerany/pat"
 	"github.com/go-playground/lars"
+	"github.com/wayneashleyberry/superhttp"
 
 	// "github.com/daryl/zeus"
 
@@ -289,7 +290,6 @@ func loadBoneSingle(method, path string, handler http.Handler) http.Handler {
 }
 
 // chi
-// chi
 func chiHandleWrite(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, chi.URLParam(r, "name"))
 }
@@ -337,6 +337,60 @@ func loadChiSingle(method, path string, handler http.HandlerFunc) http.Handler {
 		mux.Patch(path, handler)
 	case http.MethodDelete:
 		mux.Delete(path, handler)
+	default:
+		panic("Unknown HTTP method: " + method)
+	}
+	return mux
+}
+
+// superhttp
+func superhttpHandleWrite(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, r.PathValue("name"))
+}
+
+func loadSuperhttp(routes []route) http.Handler {
+	h := httpHandlerFunc
+	if loadTestHandler {
+		h = httpHandlerFuncTest
+	}
+
+	re := regexp.MustCompile(":([^/]*)")
+
+	mux := superhttp.NewServeMux()
+	for _, route := range routes {
+		path := re.ReplaceAllString(route.path, "{$1}")
+
+		switch route.method {
+		case http.MethodGet:
+			mux.GETFunc(path, h)
+		case http.MethodPost:
+			mux.POSTFunc(path, h)
+		case http.MethodPut:
+			mux.PUTFunc(path, h)
+		case http.MethodPatch:
+			mux.PATCHFunc(path, h)
+		case http.MethodDelete:
+			mux.DELETEFunc(path, h)
+		default:
+			panic("Unknown HTTP method: " + route.method)
+		}
+	}
+	return mux
+}
+
+func loadSuperhttpSingle(method, path string, handler http.HandlerFunc) http.Handler {
+	mux := superhttp.NewServeMux()
+	switch method {
+	case http.MethodGet:
+		mux.GET(path, handler)
+	case http.MethodPost:
+		mux.POST(path, handler)
+	case http.MethodPut:
+		mux.PUT(path, handler)
+	case http.MethodPatch:
+		mux.PATCH(path, handler)
+	case http.MethodDelete:
+		mux.DELETE(path, handler)
 	default:
 		panic("Unknown HTTP method: " + method)
 	}

@@ -283,6 +283,8 @@ github.com/vulcand/predicate v1.3.0 h1:jtNe4PHbLJ649dR7Gl+MSAzUhLGtLspAkWlSjoOiX
 github.com/vulcand/predicate v1.3.0/go.mod h1:opzv9MetRuMNnuoPeTSWtwzjcXsxQC00/fuWzkPTn4s=
 github.com/vulcand/route v0.1.1 h1:gAKgTezNugGeo7h6oi3z+TaRzFmKYRCVe5R18a+kcFk=
 github.com/vulcand/route v0.1.1/go.mod h1:jqYmAcqNoY7qG/ISGzZllEh6uS/mIDJ8sHmtui0PF0g=
+github.com/wayneashleyberry/superhttp v1.0.1 h1:ZMVHLI6MGMw0MFL3BCPojyczZjqMXo1Vgk7j4RI1r44=
+github.com/wayneashleyberry/superhttp v1.0.1/go.mod h1:XNC5rslLuhTepnsCpqOs2FDA/fc8UmcZF2zLIwMii58=
 github.com/wendal/errors v0.0.0-20130201093226-f66c77a7882b/go.mod h1:Q12BUT7DqIlHRmgv3RskH+UCM/4eqVMgI0EMmlSpAXc=
 github.com/yuin/gopher-lua v0.0.0-20171031051903-609c9cd26973/go.mod h1:aEV29XrmTYFr3CiRxZeGHpkvbwq+prZduBqMaascyCU=
 github.com/zenazn/goji v1.0.1 h1:4lbD8Mx2h7IvloP7r2C0D6ltZP6Ufip8Hn0wmSK5LR8=

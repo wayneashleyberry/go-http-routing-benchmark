@@ -61,6 +61,7 @@ var (
 	parseBeego       http.Handler
 	parseBone        http.Handler
 	parseChi         http.Handler
+	parseSuperhttp   http.Handler
 	parseDenco       http.Handler
 	parseEcho        http.Handler
 	parseGin         http.Handler
@@ -104,6 +105,9 @@ func init() {
 	})
 	calcMem("Chi", func() {
 		parseChi = loadChi(parseAPI)
+	})
+	calcMem("Superhttp", func() {
+		parseSuperhttp = loadSuperhttp(parseAPI)
 	})
 	calcMem("Denco", func() {
 		parseDenco = loadDenco(parseAPI)
@@ -201,6 +205,10 @@ func BenchmarkBone_ParseStatic(b *testing.B) {
 func BenchmarkChi_ParseStatic(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/1/users", nil)
 	benchRequest(b, parseChi, req)
+}
+func BenchmarkSuperhttp_ParseStatic(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/1/users", nil)
+	benchRequest(b, parseSuperhttp, req)
 }
 func BenchmarkDenco_ParseStatic(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/1/users", nil)
@@ -323,6 +331,10 @@ func BenchmarkChi_ParseParam(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/1/classes/go", nil)
 	benchRequest(b, parseChi, req)
 }
+func BenchmarkSuperhttp_ParseParam(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/1/classes/go", nil)
+	benchRequest(b, parseSuperhttp, req)
+}
 func BenchmarkDenco_ParseParam(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/1/classes/go", nil)
 	benchRequest(b, parseDenco, req)
@@ -444,6 +456,10 @@ func BenchmarkChi_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/1/classes/go/123456789", nil)
 	benchRequest(b, parseChi, req)
 }
+func BenchmarkSuperhttp_Parse2Params(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/1/classes/go/123456789", nil)
+	benchRequest(b, parseSuperhttp, req)
+}
 func BenchmarkDenco_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/1/classes/go/123456789", nil)
 	benchRequest(b, parseDenco, req)
@@ -559,6 +575,9 @@ func BenchmarkBone_ParseAll(b *testing.B) {
 }
 func BenchmarkChi_ParseAll(b *testing.B) {
 	benchRoutes(b, parseChi, parseAPI)
+}
+func BenchmarkSuperhttp_ParseAll(b *testing.B) {
+	benchRoutes(b, parseSuperhttp, parseAPI)
 }
 func BenchmarkDenco_ParseAll(b *testing.B) {
 	benchRoutes(b, parseDenco, parseAPI)

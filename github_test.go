@@ -279,6 +279,7 @@ var (
 	githubBeego       http.Handler
 	githubBone        http.Handler
 	githubChi         http.Handler
+	githubSuperhttp   http.Handler
 	githubDenco       http.Handler
 	githubEcho        http.Handler
 	githubGin         http.Handler
@@ -322,6 +323,9 @@ func init() {
 	})
 	calcMem("Chi", func() {
 		githubChi = loadChi(githubAPI)
+	})
+	calcMem("Superhttp", func() {
+		githubSuperhttp = loadSuperhttp(githubAPI)
 	})
 	calcMem("Denco", func() {
 		githubDenco = loadDenco(githubAPI)
@@ -421,6 +425,10 @@ func BenchmarkBone_GithubStatic(b *testing.B) {
 func BenchmarkChi_GithubStatic(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubChi, req)
+}
+func BenchmarkSuperhttp_GithubStatic(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
+	benchRequest(b, githubSuperhttp, req)
 }
 func BenchmarkDenco_GithubStatic(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
@@ -543,6 +551,10 @@ func BenchmarkChi_GithubParam(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubChi, req)
 }
+func BenchmarkSuperhttp_GithubParam(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
+	benchRequest(b, githubSuperhttp, req)
+}
 
 func BenchmarkDenco_GithubParam(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
@@ -660,6 +672,9 @@ func BenchmarkBone_GithubAll(b *testing.B) {
 }
 func BenchmarkChi_GithubAll(b *testing.B) {
 	benchRoutes(b, githubChi, githubAPI)
+}
+func BenchmarkSuperhttp_GithubAll(b *testing.B) {
+	benchRoutes(b, githubSuperhttp, githubAPI)
 }
 
 func BenchmarkDenco_GithubAll(b *testing.B) {

@@ -8,8 +8,8 @@ Of course the tested routers can be used for any kind of HTTP request → handle
 #### Tested routers & frameworks:
 
 - [Beego](http://beego.me/)
-- [go-json-rest](https://github.com/ant0ine/go-json-rest)
 - [Denco](https://github.com/naoina/denco)
+- [go-json-rest](https://github.com/ant0ine/go-json-rest)
 - [Gocraft Web](https://github.com/gocraft/web)
 - [Goji](https://github.com/zenazn/goji/)
 - [Gorilla Mux](http://www.gorillatoolkit.org/pkg/mux)

@@ -177,6 +177,7 @@ var (
 	staticBeego       http.Handler
 	staticBone        http.Handler
 	staticChi         http.Handler
+	staticSuperhttp   http.Handler
 	staticDenco       http.Handler
 	staticEcho        http.Handler
 	staticGin         http.Handler
@@ -226,6 +227,9 @@ func init() {
 	})
 	calcMem("Chi", func() {
 		staticChi = loadChi(staticRoutes)
+	})
+	calcMem("Superhttp", func() {
+		staticSuperhttp = loadSuperhttp(staticRoutes)
 	})
 	calcMem("Denco", func() {
 		staticDenco = loadDenco(staticRoutes)

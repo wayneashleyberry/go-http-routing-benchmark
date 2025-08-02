@@ -17,6 +17,7 @@ var (
 		{"Beego", loadBeego},
 		{"Bone", loadBone},
 		{"Chi", loadChi},
+		{"Superhttp", loadSuperhttp},
 		{"Denco", loadDenco},
 		{"Echo", loadEcho},
 		{"Gin", loadGin},

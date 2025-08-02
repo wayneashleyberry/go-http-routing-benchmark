@@ -136,6 +136,13 @@ func BenchmarkChi_Param(b *testing.B) {
 	benchRequest(b, router, r)
 }
 
+func BenchmarkSuperhttp_Param(b *testing.B) {
+	router := loadSuperhttpSingle(http.MethodGet, "/user/{name}", httpHandlerFunc)
+
+	r, _ := http.NewRequest(http.MethodGet, "/user/gordon", nil)
+	benchRequest(b, router, r)
+}
+
 func BenchmarkDenco_Param(b *testing.B) {
 	router := loadDencoSingle(http.MethodGet, "/user/:name", dencoHandler)
 
@@ -321,6 +328,13 @@ func BenchmarkBone_Param5(b *testing.B) {
 }
 func BenchmarkChi_Param5(b *testing.B) {
 	router := loadChiSingle(http.MethodGet, fiveBrace, httpHandlerFunc)
+
+	r, _ := http.NewRequest(http.MethodGet, fiveRoute, nil)
+	benchRequest(b, router, r)
+}
+
+func BenchmarkSuperhttp_Param5(b *testing.B) {
+	router := loadSuperhttpSingle(http.MethodGet, fiveBrace, httpHandlerFunc)
 
 	r, _ := http.NewRequest(http.MethodGet, fiveRoute, nil)
 	benchRequest(b, router, r)
@@ -516,6 +530,13 @@ func BenchmarkChi_Param20(b *testing.B) {
 	benchRequest(b, router, r)
 }
 
+func BenchmarkSuperhttp_Param20(b *testing.B) {
+	router := loadSuperhttpSingle(http.MethodGet, twentyBrace, httpHandlerFunc)
+
+	r, _ := http.NewRequest(http.MethodGet, twentyRoute, nil)
+	benchRequest(b, router, r)
+}
+
 func BenchmarkDenco_Param20(b *testing.B) {
 	router := loadDencoSingle(http.MethodGet, twentyColon, dencoHandler)
 
@@ -697,6 +718,13 @@ func BenchmarkBone_ParamWrite(b *testing.B) {
 }
 func BenchmarkChi_ParamWrite(b *testing.B) {
 	router := loadChiSingle(http.MethodGet, "/user/{name}", chiHandleWrite)
+
+	r, _ := http.NewRequest(http.MethodGet, "/user/gordon", nil)
+	benchRequest(b, router, r)
+}
+
+func BenchmarkSuperhttp_ParamWrite(b *testing.B) {
+	router := loadSuperhttpSingle(http.MethodGet, "/user/{name}", superhttpHandleWrite)
 
 	r, _ := http.NewRequest(http.MethodGet, "/user/gordon", nil)
 	benchRequest(b, router, r)

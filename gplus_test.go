@@ -41,6 +41,7 @@ var (
 	gplusBeego       http.Handler
 	gplusBone        http.Handler
 	gplusChi         http.Handler
+	gplusSuperhttp   http.Handler
 	gplusDenco       http.Handler
 	gplusEcho        http.Handler
 	gplusGin         http.Handler
@@ -84,6 +85,9 @@ func init() {
 	})
 	calcMem("Chi", func() {
 		gplusChi = loadChi(gplusAPI)
+	})
+	calcMem("Superhttp", func() {
+		gplusSuperhttp = loadSuperhttp(gplusAPI)
 	})
 
 	calcMem("Denco", func() {
@@ -183,6 +187,10 @@ func BenchmarkBone_GPlusStatic(b *testing.B) {
 func BenchmarkChi_GPlusStatic(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/people", nil)
 	benchRequest(b, gplusChi, req)
+}
+func BenchmarkSuperhttp_GPlusStatic(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/people", nil)
+	benchRequest(b, gplusSuperhttp, req)
 }
 
 func BenchmarkDenco_GPlusStatic(b *testing.B) {
@@ -307,6 +315,10 @@ func BenchmarkChi_GPlusParam(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/people/118051310819094153327", nil)
 	benchRequest(b, gplusChi, req)
 }
+func BenchmarkSuperhttp_GPlusParam(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/people/118051310819094153327", nil)
+	benchRequest(b, gplusSuperhttp, req)
+}
 
 func BenchmarkDenco_GPlusParam(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/people/118051310819094153327", nil)
@@ -430,6 +442,10 @@ func BenchmarkChi_GPlus2Params(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/people/118051310819094153327/activities/123456789", nil)
 	benchRequest(b, gplusChi, req)
 }
+func BenchmarkSuperhttp_GPlus2Params(b *testing.B) {
+	req, _ := http.NewRequest(http.MethodGet, "/people/118051310819094153327/activities/123456789", nil)
+	benchRequest(b, gplusSuperhttp, req)
+}
 
 func BenchmarkDenco_GPlus2Params(b *testing.B) {
 	req, _ := http.NewRequest(http.MethodGet, "/people/118051310819094153327/activities/123456789", nil)
@@ -547,6 +563,9 @@ func BenchmarkBone_GPlusAll(b *testing.B) {
 }
 func BenchmarkChi_GPlusAll(b *testing.B) {
 	benchRoutes(b, gplusChi, gplusAPI)
+}
+func BenchmarkSuperhttp_GPlusAll(b *testing.B) {
+	benchRoutes(b, gplusSuperhttp, gplusAPI)
 }
 
 func BenchmarkDenco_GPlusAll(b *testing.B) {
