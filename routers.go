@@ -362,15 +362,15 @@ func loadSuperhttp(routes []route) http.Handler {
 
 		switch route.method {
 		case http.MethodGet:
-			mux.GETFunc(path, h)
+			mux.GET(path, h)
 		case http.MethodPost:
-			mux.POSTFunc(path, h)
+			mux.POST(path, h)
 		case http.MethodPut:
-			mux.PUTFunc(path, h)
+			mux.PUT(path, h)
 		case http.MethodPatch:
-			mux.PATCHFunc(path, h)
+			mux.PATCH(path, h)
 		case http.MethodDelete:
-			mux.DELETEFunc(path, h)
+			mux.DELETE(path, h)
 		default:
 			panic("Unknown HTTP method: " + route.method)
 		}
