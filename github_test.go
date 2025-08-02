@@ -12,300 +12,296 @@ import (
 // http://developer.github.com/v3/
 var githubAPI = []route{
 	// OAuth Authorizations
-	{"GET", "/authorizations"},
-	{"GET", "/authorizations/:id"},
-	{"POST", "/authorizations"},
-	//{"PUT", "/authorizations/clients/:client_id"},
-	//{"PATCH", "/authorizations/:id"},
-	{"DELETE", "/authorizations/:id"},
-	{"GET", "/applications/:client_id/tokens/:access_token"},
-	{"DELETE", "/applications/:client_id/tokens"},
-	{"DELETE", "/applications/:client_id/tokens/:access_token"},
+	{http.MethodGet, "/authorizations"},
+	{http.MethodGet, "/authorizations/:id"},
+	{http.MethodPost, "/authorizations"},
+	//{http.MethodPut, "/authorizations/clients/:client_id"},
+	//{http.MethodPatch, "/authorizations/:id"},
+	{http.MethodDelete, "/authorizations/:id"},
+	{http.MethodGet, "/applications/:client_id/tokens/:access_token"},
+	{http.MethodDelete, "/applications/:client_id/tokens"},
+	{http.MethodDelete, "/applications/:client_id/tokens/:access_token"},
 
 	// Activity
-	{"GET", "/events"},
-	{"GET", "/repos/:owner/:repo/events"},
-	{"GET", "/networks/:owner/:repo/events"},
-	{"GET", "/orgs/:org/events"},
-	{"GET", "/users/:user/received_events"},
-	{"GET", "/users/:user/received_events/public"},
-	{"GET", "/users/:user/events"},
-	{"GET", "/users/:user/events/public"},
-	{"GET", "/users/:user/events/orgs/:org"},
-	{"GET", "/feeds"},
-	{"GET", "/notifications"},
-	{"GET", "/repos/:owner/:repo/notifications"},
-	{"PUT", "/notifications"},
-	{"PUT", "/repos/:owner/:repo/notifications"},
-	{"GET", "/notifications/threads/:id"},
-	//{"PATCH", "/notifications/threads/:id"},
-	{"GET", "/notifications/threads/:id/subscription"},
-	{"PUT", "/notifications/threads/:id/subscription"},
-	{"DELETE", "/notifications/threads/:id/subscription"},
-	{"GET", "/repos/:owner/:repo/stargazers"},
-	{"GET", "/users/:user/starred"},
-	{"GET", "/user/starred"},
-	{"GET", "/user/starred/:owner/:repo"},
-	{"PUT", "/user/starred/:owner/:repo"},
-	{"DELETE", "/user/starred/:owner/:repo"},
-	{"GET", "/repos/:owner/:repo/subscribers"},
-	{"GET", "/users/:user/subscriptions"},
-	{"GET", "/user/subscriptions"},
-	{"GET", "/repos/:owner/:repo/subscription"},
-	{"PUT", "/repos/:owner/:repo/subscription"},
-	{"DELETE", "/repos/:owner/:repo/subscription"},
-	{"GET", "/user/subscriptions/:owner/:repo"},
-	{"PUT", "/user/subscriptions/:owner/:repo"},
-	{"DELETE", "/user/subscriptions/:owner/:repo"},
+	{http.MethodGet, "/events"},
+	{http.MethodGet, "/repos/:owner/:repo/events"},
+	{http.MethodGet, "/networks/:owner/:repo/events"},
+	{http.MethodGet, "/orgs/:org/events"},
+	{http.MethodGet, "/users/:user/received_events"},
+	{http.MethodGet, "/users/:user/received_events/public"},
+	{http.MethodGet, "/users/:user/events"},
+	{http.MethodGet, "/users/:user/events/public"},
+	{http.MethodGet, "/users/:user/events/orgs/:org"},
+	{http.MethodGet, "/feeds"},
+	{http.MethodGet, "/notifications"},
+	{http.MethodGet, "/repos/:owner/:repo/notifications"},
+	{http.MethodPut, "/notifications"},
+	{http.MethodPut, "/repos/:owner/:repo/notifications"},
+	{http.MethodGet, "/notifications/threads/:id"},
+	//{http.MethodPatch, "/notifications/threads/:id"},
+	{http.MethodGet, "/notifications/threads/:id/subscription"},
+	{http.MethodPut, "/notifications/threads/:id/subscription"},
+	{http.MethodDelete, "/notifications/threads/:id/subscription"},
+	{http.MethodGet, "/repos/:owner/:repo/stargazers"},
+	{http.MethodGet, "/users/:user/starred"},
+	{http.MethodGet, "/user/starred"},
+	{http.MethodGet, "/user/starred/:owner/:repo"},
+	{http.MethodPut, "/user/starred/:owner/:repo"},
+	{http.MethodDelete, "/user/starred/:owner/:repo"},
+	{http.MethodGet, "/repos/:owner/:repo/subscribers"},
+	{http.MethodGet, "/users/:user/subscriptions"},
+	{http.MethodGet, "/user/subscriptions"},
+	{http.MethodGet, "/repos/:owner/:repo/subscription"},
+	{http.MethodPut, "/repos/:owner/:repo/subscription"},
+	{http.MethodDelete, "/repos/:owner/:repo/subscription"},
+	{http.MethodGet, "/user/subscriptions/:owner/:repo"},
+	{http.MethodPut, "/user/subscriptions/:owner/:repo"},
+	{http.MethodDelete, "/user/subscriptions/:owner/:repo"},
 
 	// Gists
-	{"GET", "/users/:user/gists"},
-	{"GET", "/gists"},
-	//{"GET", "/gists/public"},
-	//{"GET", "/gists/starred"},
-	{"GET", "/gists/:id"},
-	{"POST", "/gists"},
-	//{"PATCH", "/gists/:id"},
-	{"PUT", "/gists/:id/star"},
-	{"DELETE", "/gists/:id/star"},
-	{"GET", "/gists/:id/star"},
-	{"POST", "/gists/:id/forks"},
-	{"DELETE", "/gists/:id"},
+	{http.MethodGet, "/users/:user/gists"},
+	{http.MethodGet, "/gists"},
+	//{http.MethodGet, "/gists/public"},
+	//{http.MethodGet, "/gists/starred"},
+	{http.MethodGet, "/gists/:id"},
+	{http.MethodPost, "/gists"},
+	//{http.MethodPatch, "/gists/:id"},
+	{http.MethodPut, "/gists/:id/star"},
+	{http.MethodDelete, "/gists/:id/star"},
+	{http.MethodGet, "/gists/:id/star"},
+	{http.MethodPost, "/gists/:id/forks"},
+	{http.MethodDelete, "/gists/:id"},
 
 	// Git Data
-	{"GET", "/repos/:owner/:repo/git/blobs/:sha"},
-	{"POST", "/repos/:owner/:repo/git/blobs"},
-	{"GET", "/repos/:owner/:repo/git/commits/:sha"},
-	{"POST", "/repos/:owner/:repo/git/commits"},
-	//{"GET", "/repos/:owner/:repo/git/refs/*ref"},
-	{"GET", "/repos/:owner/:repo/git/refs"},
-	{"POST", "/repos/:owner/:repo/git/refs"},
-	//{"PATCH", "/repos/:owner/:repo/git/refs/*ref"},
-	//{"DELETE", "/repos/:owner/:repo/git/refs/*ref"},
-	{"GET", "/repos/:owner/:repo/git/tags/:sha"},
-	{"POST", "/repos/:owner/:repo/git/tags"},
-	{"GET", "/repos/:owner/:repo/git/trees/:sha"},
-	{"POST", "/repos/:owner/:repo/git/trees"},
+	{http.MethodGet, "/repos/:owner/:repo/git/blobs/:sha"},
+	{http.MethodPost, "/repos/:owner/:repo/git/blobs"},
+	{http.MethodGet, "/repos/:owner/:repo/git/commits/:sha"},
+	{http.MethodPost, "/repos/:owner/:repo/git/commits"},
+	//{http.MethodGet, "/repos/:owner/:repo/git/refs/*ref"},
+	{http.MethodGet, "/repos/:owner/:repo/git/refs"},
+	{http.MethodPost, "/repos/:owner/:repo/git/refs"},
+	//{http.MethodPatch, "/repos/:owner/:repo/git/refs/*ref"},
+	//{http.MethodDelete, "/repos/:owner/:repo/git/refs/*ref"},
+	{http.MethodGet, "/repos/:owner/:repo/git/tags/:sha"},
+	{http.MethodPost, "/repos/:owner/:repo/git/tags"},
+	{http.MethodGet, "/repos/:owner/:repo/git/trees/:sha"},
+	{http.MethodPost, "/repos/:owner/:repo/git/trees"},
 
 	// Issues
-	{"GET", "/issues"},
-	{"GET", "/user/issues"},
-	{"GET", "/orgs/:org/issues"},
-	{"GET", "/repos/:owner/:repo/issues"},
-	{"GET", "/repos/:owner/:repo/issues/:number"},
-	{"POST", "/repos/:owner/:repo/issues"},
-	//{"PATCH", "/repos/:owner/:repo/issues/:number"},
-	{"GET", "/repos/:owner/:repo/assignees"},
-	{"GET", "/repos/:owner/:repo/assignees/:assignee"},
-	{"GET", "/repos/:owner/:repo/issues/:number/comments"},
-	//{"GET", "/repos/:owner/:repo/issues/comments"},
-	//{"GET", "/repos/:owner/:repo/issues/comments/:id"},
-	{"POST", "/repos/:owner/:repo/issues/:number/comments"},
-	//{"PATCH", "/repos/:owner/:repo/issues/comments/:id"},
-	//{"DELETE", "/repos/:owner/:repo/issues/comments/:id"},
-	{"GET", "/repos/:owner/:repo/issues/:number/events"},
-	//{"GET", "/repos/:owner/:repo/issues/events"},
-	//{"GET", "/repos/:owner/:repo/issues/events/:id"},
-	{"GET", "/repos/:owner/:repo/labels"},
-	{"GET", "/repos/:owner/:repo/labels/:name"},
-	{"POST", "/repos/:owner/:repo/labels"},
-	//{"PATCH", "/repos/:owner/:repo/labels/:name"},
-	{"DELETE", "/repos/:owner/:repo/labels/:name"},
-	{"GET", "/repos/:owner/:repo/issues/:number/labels"},
-	{"POST", "/repos/:owner/:repo/issues/:number/labels"},
-	{"DELETE", "/repos/:owner/:repo/issues/:number/labels/:name"},
-	{"PUT", "/repos/:owner/:repo/issues/:number/labels"},
-	{"DELETE", "/repos/:owner/:repo/issues/:number/labels"},
-	{"GET", "/repos/:owner/:repo/milestones/:number/labels"},
-	{"GET", "/repos/:owner/:repo/milestones"},
-	{"GET", "/repos/:owner/:repo/milestones/:number"},
-	{"POST", "/repos/:owner/:repo/milestones"},
-	//{"PATCH", "/repos/:owner/:repo/milestones/:number"},
-	{"DELETE", "/repos/:owner/:repo/milestones/:number"},
+	{http.MethodGet, "/issues"},
+	{http.MethodGet, "/user/issues"},
+	{http.MethodGet, "/orgs/:org/issues"},
+	{http.MethodGet, "/repos/:owner/:repo/issues"},
+	{http.MethodGet, "/repos/:owner/:repo/issues/:number"},
+	{http.MethodPost, "/repos/:owner/:repo/issues"},
+	//{http.MethodPatch, "/repos/:owner/:repo/issues/:number"},
+	{http.MethodGet, "/repos/:owner/:repo/assignees"},
+	{http.MethodGet, "/repos/:owner/:repo/assignees/:assignee"},
+	{http.MethodGet, "/repos/:owner/:repo/issues/:number/comments"},
+	//{http.MethodGet, "/repos/:owner/:repo/issues/comments"},
+	//{http.MethodGet, "/repos/:owner/:repo/issues/comments/:id"},
+	{http.MethodPost, "/repos/:owner/:repo/issues/:number/comments"},
+	//{http.MethodPatch, "/repos/:owner/:repo/issues/comments/:id"},
+	//{http.MethodDelete, "/repos/:owner/:repo/issues/comments/:id"},
+	{http.MethodGet, "/repos/:owner/:repo/issues/:number/events"},
+	//{http.MethodGet, "/repos/:owner/:repo/issues/events"},
+	//{http.MethodGet, "/repos/:owner/:repo/issues/events/:id"},
+	{http.MethodGet, "/repos/:owner/:repo/labels"},
+	{http.MethodGet, "/repos/:owner/:repo/labels/:name"},
+	{http.MethodPost, "/repos/:owner/:repo/labels"},
+	//{http.MethodPatch, "/repos/:owner/:repo/labels/:name"},
+	{http.MethodDelete, "/repos/:owner/:repo/labels/:name"},
+	{http.MethodGet, "/repos/:owner/:repo/issues/:number/labels"},
+	{http.MethodPost, "/repos/:owner/:repo/issues/:number/labels"},
+	{http.MethodDelete, "/repos/:owner/:repo/issues/:number/labels/:name"},
+	{http.MethodPut, "/repos/:owner/:repo/issues/:number/labels"},
+	{http.MethodDelete, "/repos/:owner/:repo/issues/:number/labels"},
+	{http.MethodGet, "/repos/:owner/:repo/milestones/:number/labels"},
+	{http.MethodGet, "/repos/:owner/:repo/milestones"},
+	{http.MethodGet, "/repos/:owner/:repo/milestones/:number"},
+	{http.MethodPost, "/repos/:owner/:repo/milestones"},
+	//{http.MethodPatch, "/repos/:owner/:repo/milestones/:number"},
+	{http.MethodDelete, "/repos/:owner/:repo/milestones/:number"},
 
 	// Miscellaneous
-	{"GET", "/emojis"},
-	{"GET", "/gitignore/templates"},
-	{"GET", "/gitignore/templates/:name"},
-	{"POST", "/markdown"},
-	{"POST", "/markdown/raw"},
-	{"GET", "/meta"},
-	{"GET", "/rate_limit"},
+	{http.MethodGet, "/emojis"},
+	{http.MethodGet, "/gitignore/templates"},
+	{http.MethodGet, "/gitignore/templates/:name"},
+	{http.MethodPost, "/markdown"},
+	{http.MethodPost, "/markdown/raw"},
+	{http.MethodGet, "/meta"},
+	{http.MethodGet, "/rate_limit"},
 
 	// Organizations
-	{"GET", "/users/:user/orgs"},
-	{"GET", "/user/orgs"},
-	{"GET", "/orgs/:org"},
-	//{"PATCH", "/orgs/:org"},
-	{"GET", "/orgs/:org/members"},
-	{"GET", "/orgs/:org/members/:user"},
-	{"DELETE", "/orgs/:org/members/:user"},
-	{"GET", "/orgs/:org/public_members"},
-	{"GET", "/orgs/:org/public_members/:user"},
-	{"PUT", "/orgs/:org/public_members/:user"},
-	{"DELETE", "/orgs/:org/public_members/:user"},
-	{"GET", "/orgs/:org/teams"},
-	{"GET", "/teams/:id"},
-	{"POST", "/orgs/:org/teams"},
-	//{"PATCH", "/teams/:id"},
-	{"DELETE", "/teams/:id"},
-	{"GET", "/teams/:id/members"},
-	{"GET", "/teams/:id/members/:user"},
-	{"PUT", "/teams/:id/members/:user"},
-	{"DELETE", "/teams/:id/members/:user"},
-	{"GET", "/teams/:id/repos"},
-	{"GET", "/teams/:id/repos/:owner/:repo"},
-	{"PUT", "/teams/:id/repos/:owner/:repo"},
-	{"DELETE", "/teams/:id/repos/:owner/:repo"},
-	{"GET", "/user/teams"},
+	{http.MethodGet, "/users/:user/orgs"},
+	{http.MethodGet, "/user/orgs"},
+	{http.MethodGet, "/orgs/:org"},
+	//{http.MethodPatch, "/orgs/:org"},
+	{http.MethodGet, "/orgs/:org/members"},
+	{http.MethodGet, "/orgs/:org/members/:user"},
+	{http.MethodDelete, "/orgs/:org/members/:user"},
+	{http.MethodGet, "/orgs/:org/public_members"},
+	{http.MethodGet, "/orgs/:org/public_members/:user"},
+	{http.MethodPut, "/orgs/:org/public_members/:user"},
+	{http.MethodDelete, "/orgs/:org/public_members/:user"},
+	{http.MethodGet, "/orgs/:org/teams"},
+	{http.MethodGet, "/teams/:id"},
+	{http.MethodPost, "/orgs/:org/teams"},
+	//{http.MethodPatch, "/teams/:id"},
+	{http.MethodDelete, "/teams/:id"},
+	{http.MethodGet, "/teams/:id/members"},
+	{http.MethodGet, "/teams/:id/members/:user"},
+	{http.MethodPut, "/teams/:id/members/:user"},
+	{http.MethodDelete, "/teams/:id/members/:user"},
+	{http.MethodGet, "/teams/:id/repos"},
+	{http.MethodGet, "/teams/:id/repos/:owner/:repo"},
+	{http.MethodPut, "/teams/:id/repos/:owner/:repo"},
+	{http.MethodDelete, "/teams/:id/repos/:owner/:repo"},
+	{http.MethodGet, "/user/teams"},
 
 	// Pull Requests
-	{"GET", "/repos/:owner/:repo/pulls"},
-	{"GET", "/repos/:owner/:repo/pulls/:number"},
-	{"POST", "/repos/:owner/:repo/pulls"},
-	//{"PATCH", "/repos/:owner/:repo/pulls/:number"},
-	{"GET", "/repos/:owner/:repo/pulls/:number/commits"},
-	{"GET", "/repos/:owner/:repo/pulls/:number/files"},
-	{"GET", "/repos/:owner/:repo/pulls/:number/merge"},
-	{"PUT", "/repos/:owner/:repo/pulls/:number/merge"},
-	{"GET", "/repos/:owner/:repo/pulls/:number/comments"},
-	//{"GET", "/repos/:owner/:repo/pulls/comments"},
-	//{"GET", "/repos/:owner/:repo/pulls/comments/:number"},
-	{"PUT", "/repos/:owner/:repo/pulls/:number/comments"},
-	//{"PATCH", "/repos/:owner/:repo/pulls/comments/:number"},
-	//{"DELETE", "/repos/:owner/:repo/pulls/comments/:number"},
+	{http.MethodGet, "/repos/:owner/:repo/pulls"},
+	{http.MethodGet, "/repos/:owner/:repo/pulls/:number"},
+	{http.MethodPost, "/repos/:owner/:repo/pulls"},
+	//{http.MethodPatch, "/repos/:owner/:repo/pulls/:number"},
+	{http.MethodGet, "/repos/:owner/:repo/pulls/:number/commits"},
+	{http.MethodGet, "/repos/:owner/:repo/pulls/:number/files"},
+	{http.MethodGet, "/repos/:owner/:repo/pulls/:number/merge"},
+	{http.MethodPut, "/repos/:owner/:repo/pulls/:number/merge"},
+	{http.MethodGet, "/repos/:owner/:repo/pulls/:number/comments"},
+	//{http.MethodGet, "/repos/:owner/:repo/pulls/comments"},
+	//{http.MethodGet, "/repos/:owner/:repo/pulls/comments/:number"},
+	{http.MethodPut, "/repos/:owner/:repo/pulls/:number/comments"},
+	//{http.MethodPatch, "/repos/:owner/:repo/pulls/comments/:number"},
+	//{http.MethodDelete, "/repos/:owner/:repo/pulls/comments/:number"},
 
 	// Repositories
-	{"GET", "/user/repos"},
-	{"GET", "/users/:user/repos"},
-	{"GET", "/orgs/:org/repos"},
-	{"GET", "/repositories"},
-	{"POST", "/user/repos"},
-	{"POST", "/orgs/:org/repos"},
-	{"GET", "/repos/:owner/:repo"},
-	//{"PATCH", "/repos/:owner/:repo"},
-	{"GET", "/repos/:owner/:repo/contributors"},
-	{"GET", "/repos/:owner/:repo/languages"},
-	{"GET", "/repos/:owner/:repo/teams"},
-	{"GET", "/repos/:owner/:repo/tags"},
-	{"GET", "/repos/:owner/:repo/branches"},
-	{"GET", "/repos/:owner/:repo/branches/:branch"},
-	{"DELETE", "/repos/:owner/:repo"},
-	{"GET", "/repos/:owner/:repo/collaborators"},
-	{"GET", "/repos/:owner/:repo/collaborators/:user"},
-	{"PUT", "/repos/:owner/:repo/collaborators/:user"},
-	{"DELETE", "/repos/:owner/:repo/collaborators/:user"},
-	{"GET", "/repos/:owner/:repo/comments"},
-	{"GET", "/repos/:owner/:repo/commits/:sha/comments"},
-	{"POST", "/repos/:owner/:repo/commits/:sha/comments"},
-	{"GET", "/repos/:owner/:repo/comments/:id"},
-	//{"PATCH", "/repos/:owner/:repo/comments/:id"},
-	{"DELETE", "/repos/:owner/:repo/comments/:id"},
-	{"GET", "/repos/:owner/:repo/commits"},
-	{"GET", "/repos/:owner/:repo/commits/:sha"},
-	{"GET", "/repos/:owner/:repo/readme"},
-	//{"GET", "/repos/:owner/:repo/contents/*path"},
-	//{"PUT", "/repos/:owner/:repo/contents/*path"},
-	//{"DELETE", "/repos/:owner/:repo/contents/*path"},
-	//{"GET", "/repos/:owner/:repo/:archive_format/:ref"},
-	{"GET", "/repos/:owner/:repo/keys"},
-	{"GET", "/repos/:owner/:repo/keys/:id"},
-	{"POST", "/repos/:owner/:repo/keys"},
-	//{"PATCH", "/repos/:owner/:repo/keys/:id"},
-	{"DELETE", "/repos/:owner/:repo/keys/:id"},
-	{"GET", "/repos/:owner/:repo/downloads"},
-	{"GET", "/repos/:owner/:repo/downloads/:id"},
-	{"DELETE", "/repos/:owner/:repo/downloads/:id"},
-	{"GET", "/repos/:owner/:repo/forks"},
-	{"POST", "/repos/:owner/:repo/forks"},
-	{"GET", "/repos/:owner/:repo/hooks"},
-	{"GET", "/repos/:owner/:repo/hooks/:id"},
-	{"POST", "/repos/:owner/:repo/hooks"},
-	//{"PATCH", "/repos/:owner/:repo/hooks/:id"},
-	{"POST", "/repos/:owner/:repo/hooks/:id/tests"},
-	{"DELETE", "/repos/:owner/:repo/hooks/:id"},
-	{"POST", "/repos/:owner/:repo/merges"},
-	{"GET", "/repos/:owner/:repo/releases"},
-	{"GET", "/repos/:owner/:repo/releases/:id"},
-	{"POST", "/repos/:owner/:repo/releases"},
-	//{"PATCH", "/repos/:owner/:repo/releases/:id"},
-	{"DELETE", "/repos/:owner/:repo/releases/:id"},
-	{"GET", "/repos/:owner/:repo/releases/:id/assets"},
-	{"GET", "/repos/:owner/:repo/stats/contributors"},
-	{"GET", "/repos/:owner/:repo/stats/commit_activity"},
-	{"GET", "/repos/:owner/:repo/stats/code_frequency"},
-	{"GET", "/repos/:owner/:repo/stats/participation"},
-	{"GET", "/repos/:owner/:repo/stats/punch_card"},
-	{"GET", "/repos/:owner/:repo/statuses/:ref"},
-	{"POST", "/repos/:owner/:repo/statuses/:ref"},
+	{http.MethodGet, "/user/repos"},
+	{http.MethodGet, "/users/:user/repos"},
+	{http.MethodGet, "/orgs/:org/repos"},
+	{http.MethodGet, "/repositories"},
+	{http.MethodPost, "/user/repos"},
+	{http.MethodPost, "/orgs/:org/repos"},
+	{http.MethodGet, "/repos/:owner/:repo"},
+	//{http.MethodPatch, "/repos/:owner/:repo"},
+	{http.MethodGet, "/repos/:owner/:repo/contributors"},
+	{http.MethodGet, "/repos/:owner/:repo/languages"},
+	{http.MethodGet, "/repos/:owner/:repo/teams"},
+	{http.MethodGet, "/repos/:owner/:repo/tags"},
+	{http.MethodGet, "/repos/:owner/:repo/branches"},
+	{http.MethodGet, "/repos/:owner/:repo/branches/:branch"},
+	{http.MethodDelete, "/repos/:owner/:repo"},
+	{http.MethodGet, "/repos/:owner/:repo/collaborators"},
+	{http.MethodGet, "/repos/:owner/:repo/collaborators/:user"},
+	{http.MethodPut, "/repos/:owner/:repo/collaborators/:user"},
+	{http.MethodDelete, "/repos/:owner/:repo/collaborators/:user"},
+	{http.MethodGet, "/repos/:owner/:repo/comments"},
+	{http.MethodGet, "/repos/:owner/:repo/commits/:sha/comments"},
+	{http.MethodPost, "/repos/:owner/:repo/commits/:sha/comments"},
+	{http.MethodGet, "/repos/:owner/:repo/comments/:id"},
+	//{http.MethodPatch, "/repos/:owner/:repo/comments/:id"},
+	{http.MethodDelete, "/repos/:owner/:repo/comments/:id"},
+	{http.MethodGet, "/repos/:owner/:repo/commits"},
+	{http.MethodGet, "/repos/:owner/:repo/commits/:sha"},
+	{http.MethodGet, "/repos/:owner/:repo/readme"},
+	//{http.MethodGet, "/repos/:owner/:repo/contents/*path"},
+	//{http.MethodPut, "/repos/:owner/:repo/contents/*path"},
+	//{http.MethodDelete, "/repos/:owner/:repo/contents/*path"},
+	//{http.MethodGet, "/repos/:owner/:repo/:archive_format/:ref"},
+	{http.MethodGet, "/repos/:owner/:repo/keys"},
+	{http.MethodGet, "/repos/:owner/:repo/keys/:id"},
+	{http.MethodPost, "/repos/:owner/:repo/keys"},
+	//{http.MethodPatch, "/repos/:owner/:repo/keys/:id"},
+	{http.MethodDelete, "/repos/:owner/:repo/keys/:id"},
+	{http.MethodGet, "/repos/:owner/:repo/downloads"},
+	{http.MethodGet, "/repos/:owner/:repo/downloads/:id"},
+	{http.MethodDelete, "/repos/:owner/:repo/downloads/:id"},
+	{http.MethodGet, "/repos/:owner/:repo/forks"},
+	{http.MethodPost, "/repos/:owner/:repo/forks"},
+	{http.MethodGet, "/repos/:owner/:repo/hooks"},
+	{http.MethodGet, "/repos/:owner/:repo/hooks/:id"},
+	{http.MethodPost, "/repos/:owner/:repo/hooks"},
+	//{http.MethodPatch, "/repos/:owner/:repo/hooks/:id"},
+	{http.MethodPost, "/repos/:owner/:repo/hooks/:id/tests"},
+	{http.MethodDelete, "/repos/:owner/:repo/hooks/:id"},
+	{http.MethodPost, "/repos/:owner/:repo/merges"},
+	{http.MethodGet, "/repos/:owner/:repo/releases"},
+	{http.MethodGet, "/repos/:owner/:repo/releases/:id"},
+	{http.MethodPost, "/repos/:owner/:repo/releases"},
+	//{http.MethodPatch, "/repos/:owner/:repo/releases/:id"},
+	{http.MethodDelete, "/repos/:owner/:repo/releases/:id"},
+	{http.MethodGet, "/repos/:owner/:repo/releases/:id/assets"},
+	{http.MethodGet, "/repos/:owner/:repo/stats/contributors"},
+	{http.MethodGet, "/repos/:owner/:repo/stats/commit_activity"},
+	{http.MethodGet, "/repos/:owner/:repo/stats/code_frequency"},
+	{http.MethodGet, "/repos/:owner/:repo/stats/participation"},
+	{http.MethodGet, "/repos/:owner/:repo/stats/punch_card"},
+	{http.MethodGet, "/repos/:owner/:repo/statuses/:ref"},
+	{http.MethodPost, "/repos/:owner/:repo/statuses/:ref"},
 
 	// Search
-	{"GET", "/search/repositories"},
-	{"GET", "/search/code"},
-	{"GET", "/search/issues"},
-	{"GET", "/search/users"},
-	{"GET", "/legacy/issues/search/:owner/:repository/:state/:keyword"},
-	{"GET", "/legacy/repos/search/:keyword"},
-	{"GET", "/legacy/user/search/:keyword"},
-	{"GET", "/legacy/user/email/:email"},
+	{http.MethodGet, "/search/repositories"},
+	{http.MethodGet, "/search/code"},
+	{http.MethodGet, "/search/issues"},
+	{http.MethodGet, "/search/users"},
+	{http.MethodGet, "/legacy/issues/search/:owner/:repository/:state/:keyword"},
+	{http.MethodGet, "/legacy/repos/search/:keyword"},
+	{http.MethodGet, "/legacy/user/search/:keyword"},
+	{http.MethodGet, "/legacy/user/email/:email"},
 
 	// Users
-	{"GET", "/users/:user"},
-	{"GET", "/user"},
-	//{"PATCH", "/user"},
-	{"GET", "/users"},
-	{"GET", "/user/emails"},
-	{"POST", "/user/emails"},
-	{"DELETE", "/user/emails"},
-	{"GET", "/users/:user/followers"},
-	{"GET", "/user/followers"},
-	{"GET", "/users/:user/following"},
-	{"GET", "/user/following"},
-	{"GET", "/user/following/:user"},
-	{"GET", "/users/:user/following/:target_user"},
-	{"PUT", "/user/following/:user"},
-	{"DELETE", "/user/following/:user"},
-	{"GET", "/users/:user/keys"},
-	{"GET", "/user/keys"},
-	{"GET", "/user/keys/:id"},
-	{"POST", "/user/keys"},
-	//{"PATCH", "/user/keys/:id"},
-	{"DELETE", "/user/keys/:id"},
+	{http.MethodGet, "/users/:user"},
+	{http.MethodGet, "/user"},
+	//{http.MethodPatch, "/user"},
+	{http.MethodGet, "/users"},
+	{http.MethodGet, "/user/emails"},
+	{http.MethodPost, "/user/emails"},
+	{http.MethodDelete, "/user/emails"},
+	{http.MethodGet, "/users/:user/followers"},
+	{http.MethodGet, "/user/followers"},
+	{http.MethodGet, "/users/:user/following"},
+	{http.MethodGet, "/user/following"},
+	{http.MethodGet, "/user/following/:user"},
+	{http.MethodGet, "/users/:user/following/:target_user"},
+	{http.MethodPut, "/user/following/:user"},
+	{http.MethodDelete, "/user/following/:user"},
+	{http.MethodGet, "/users/:user/keys"},
+	{http.MethodGet, "/user/keys"},
+	{http.MethodGet, "/user/keys/:id"},
+	{http.MethodPost, "/user/keys"},
+	//{http.MethodPatch, "/user/keys/:id"},
+	{http.MethodDelete, "/user/keys/:id"},
 }
 
 var (
-	githubAce             http.Handler
-	githubAero            http.Handler
-	githubBear            http.Handler
-	githubBeego           http.Handler
-	githubBone            http.Handler
-	githubChi             http.Handler
-	githubCloudyKitRouter http.Handler
-	githubDenco           http.Handler
-	githubEcho            http.Handler
-	githubGin             http.Handler
-	githubGocraftWeb      http.Handler
-	githubGoji            http.Handler
-	githubGojiv2          http.Handler
-	githubGoJsonRest      http.Handler
-	githubGoRestful       http.Handler
-	githubGorillaMux      http.Handler
-	githubGowwwRouter     http.Handler
-	githubHttpRouter      http.Handler
-	githubHttpTreeMux     http.Handler
-	githubKocha           http.Handler
-	githubLARS            http.Handler
-	githubMacaron         http.Handler
-	githubMartini         http.Handler
-	githubPat             http.Handler
-	githubPossum          http.Handler
-	githubR2router        http.Handler
-	githubRevel           http.Handler
-	githubRivet           http.Handler
-	githubTango           http.Handler
-	githubTigerTonic      http.Handler
-	githubTraffic         http.Handler
-	githubVulcan          http.Handler
+	githubAce         http.Handler
+	githubBear        http.Handler
+	githubBeego       http.Handler
+	githubBone        http.Handler
+	githubChi         http.Handler
+	githubDenco       http.Handler
+	githubEcho        http.Handler
+	githubGin         http.Handler
+	githubGocraftWeb  http.Handler
+	githubGoji        http.Handler
+	githubGojiv2      http.Handler
+	githubGoJsonRest  http.Handler
+	githubGoRestful   http.Handler
+	githubGorillaMux  http.Handler
+	githubGowwwRouter http.Handler
+	githubHttpRouter  http.Handler
+	githubHttpTreeMux http.Handler
+	githubKocha       http.Handler
+	githubLARS        http.Handler
+	githubMacaron     http.Handler
+	githubMartini     http.Handler
+	githubPat         http.Handler
+	githubR2router    http.Handler
+	githubRevel       http.Handler
+	githubRivet       http.Handler
+	githubTigerTonic  http.Handler
+	githubTraffic     http.Handler
+	githubVulcan      http.Handler
 	// githubZeus        http.Handler
 )
 
@@ -314,9 +310,6 @@ func init() {
 
 	calcMem("Ace", func() {
 		githubAce = loadAce(githubAPI)
-	})
-	calcMem("Aero", func() {
-		githubAero = loadAero(githubAPI)
 	})
 	calcMem("Bear", func() {
 		githubBear = loadBear(githubAPI)
@@ -329,9 +322,6 @@ func init() {
 	})
 	calcMem("Chi", func() {
 		githubChi = loadChi(githubAPI)
-	})
-	calcMem("CloudyKitRouter", func() {
-		githubCloudyKitRouter = loadCloudyKitRouter(githubAPI)
 	})
 	calcMem("Denco", func() {
 		githubDenco = loadDenco(githubAPI)
@@ -384,9 +374,6 @@ func init() {
 	calcMem("Pat", func() {
 		githubPat = loadPat(githubAPI)
 	})
-	calcMem("Possum", func() {
-		githubPossum = loadPossum(githubAPI)
-	})
 	calcMem("R2router", func() {
 		githubR2router = loadR2router(githubAPI)
 	})
@@ -395,9 +382,6 @@ func init() {
 	// })
 	calcMem("Rivet", func() {
 		githubRivet = loadRivet(githubAPI)
-	})
-	calcMem("Tango", func() {
-		githubTango = loadTango(githubAPI)
 	})
 	calcMem("TigerTonic", func() {
 		githubTigerTonic = loadTigerTonic(githubAPI)
@@ -417,273 +401,246 @@ func init() {
 
 // Static
 func BenchmarkAce_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubAce, req)
 }
-func BenchmarkAero_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
-	benchRequest(b, githubAero, req)
-}
+
 func BenchmarkBear_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubBear, req)
 }
 func BenchmarkBeego_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubBeego, req)
 }
 func BenchmarkBone_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubBone, req)
 }
-func BenchmarkCloudyKitRouter_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
-	benchRequest(b, githubCloudyKitRouter, req)
-}
+
 func BenchmarkChi_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubChi, req)
 }
 func BenchmarkDenco_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubDenco, req)
 }
 func BenchmarkEcho_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubEcho, req)
 }
 func BenchmarkGin_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGin, req)
 }
 func BenchmarkGocraftWeb_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGocraftWeb, req)
 }
 func BenchmarkGoji_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGoji, req)
 }
 func BenchmarkGojiv2_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGojiv2, req)
 }
 func BenchmarkGoRestful_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGoRestful, req)
 }
 func BenchmarkGoJsonRest_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGoJsonRest, req)
 }
 func BenchmarkGorillaMux_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGorillaMux, req)
 }
 func BenchmarkGowwwRouter_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubGowwwRouter, req)
 }
 func BenchmarkHttpRouter_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubHttpRouter, req)
 }
 func BenchmarkHttpTreeMux_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubHttpTreeMux, req)
 }
 func BenchmarkKocha_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubKocha, req)
 }
 func BenchmarkLARS_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubLARS, req)
 }
 func BenchmarkMacaron_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubMacaron, req)
 }
 func BenchmarkMartini_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubMartini, req)
 }
 func BenchmarkPat_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubPat, req)
 }
-func BenchmarkPossum_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
-	benchRequest(b, githubPossum, req)
-}
 func BenchmarkR2router_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubR2router, req)
 }
 
-// func BenchmarkRevel_GithubStatic(b *testing.B) {
-// 	req, _ := http.NewRequest("GET", "/user/repos", nil)
-// 	benchRequest(b, githubRevel, req)
-// }
+//	func BenchmarkRevel_GithubStatic(b *testing.B) {
+//		req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
+//		benchRequest(b, githubRevel, req)
+//	}
 func BenchmarkRivet_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubRivet, req)
 }
-func BenchmarkTango_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
-	benchRequest(b, githubTango, req)
-}
 func BenchmarkTigerTonic_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubTigerTonic, req)
 }
 func BenchmarkTraffic_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubTraffic, req)
 }
 func BenchmarkVulcan_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 	benchRequest(b, githubVulcan, req)
 }
 
 // func BenchmarkZeus_GithubStatic(b *testing.B) {
-// 	req, _ := http.NewRequest("GET", "/user/repos", nil)
+// 	req, _ := http.NewRequest(http.MethodGet, "/user/repos", nil)
 // 	benchRequest(b, githubZeus, req)
 // }
 
 // Param
 func BenchmarkAce_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubAce, req)
 }
-func BenchmarkAero_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
-	benchRequest(b, githubAero, req)
-}
+
 func BenchmarkBear_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubBear, req)
 }
 func BenchmarkBeego_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubBeego, req)
 }
 func BenchmarkBone_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubBone, req)
 }
 func BenchmarkChi_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubChi, req)
 }
-func BenchmarkCloudyKitRouter_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
-	benchRequest(b, githubCloudyKitRouter, req)
-}
+
 func BenchmarkDenco_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubDenco, req)
 }
 func BenchmarkEcho_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubEcho, req)
 }
 func BenchmarkGin_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGin, req)
 }
 func BenchmarkGocraftWeb_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGocraftWeb, req)
 }
 func BenchmarkGoji_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGoji, req)
 }
 func BenchmarkGojiv2_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGojiv2, req)
 }
 func BenchmarkGoJsonRest_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGoJsonRest, req)
 }
 func BenchmarkGoRestful_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGoRestful, req)
 }
 func BenchmarkGorillaMux_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGorillaMux, req)
 }
 func BenchmarkGowwwRouter_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubGowwwRouter, req)
 }
 func BenchmarkHttpRouter_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubHttpRouter, req)
 }
 func BenchmarkHttpTreeMux_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubHttpTreeMux, req)
 }
 func BenchmarkKocha_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubKocha, req)
 }
 func BenchmarkLARS_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubLARS, req)
 }
 func BenchmarkMacaron_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubMacaron, req)
 }
 func BenchmarkMartini_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubMartini, req)
 }
 func BenchmarkPat_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubPat, req)
 }
-func BenchmarkPossum_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
-	benchRequest(b, githubPossum, req)
-}
 func BenchmarkR2router_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubR2router, req)
 }
 
-// func BenchmarkRevel_GithubParam(b *testing.B) {
-// 	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
-// 	benchRequest(b, githubRevel, req)
-// }
+//	func BenchmarkRevel_GithubParam(b *testing.B) {
+//		req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
+//		benchRequest(b, githubRevel, req)
+//	}
 func BenchmarkRivet_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubRivet, req)
 }
-func BenchmarkTango_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
-	benchRequest(b, githubTango, req)
-}
+
 func BenchmarkTigerTonic_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubTigerTonic, req)
 }
 func BenchmarkTraffic_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubTraffic, req)
 }
 func BenchmarkVulcan_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubVulcan, req)
 }
 
 // func BenchmarkZeus_GithubParam(b *testing.B) {
-// 	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
+// 	req, _ := http.NewRequest(http.MethodGet, "/repos/julienschmidt/httprouter/stargazers", nil)
 // 	benchRequest(b, githubZeus, req)
 // }
 
@@ -691,9 +648,7 @@ func BenchmarkVulcan_GithubParam(b *testing.B) {
 func BenchmarkAce_GithubAll(b *testing.B) {
 	benchRoutes(b, githubAce, githubAPI)
 }
-func BenchmarkAero_GithubAll(b *testing.B) {
-	benchRoutes(b, githubAero, githubAPI)
-}
+
 func BenchmarkBear_GithubAll(b *testing.B) {
 	benchRoutes(b, githubBear, githubAPI)
 }
@@ -706,9 +661,7 @@ func BenchmarkBone_GithubAll(b *testing.B) {
 func BenchmarkChi_GithubAll(b *testing.B) {
 	benchRoutes(b, githubChi, githubAPI)
 }
-func BenchmarkCloudyKitRouter_GithubAll(b *testing.B) {
-	benchRoutes(b, githubCloudyKitRouter, githubAPI)
-}
+
 func BenchmarkDenco_GithubAll(b *testing.B) {
 	benchRoutes(b, githubDenco, githubAPI)
 }
@@ -760,22 +713,17 @@ func BenchmarkMartini_GithubAll(b *testing.B) {
 func BenchmarkPat_GithubAll(b *testing.B) {
 	benchRoutes(b, githubPat, githubAPI)
 }
-func BenchmarkPossum_GithubAll(b *testing.B) {
-	benchRoutes(b, githubPossum, githubAPI)
-}
 func BenchmarkR2router_GithubAll(b *testing.B) {
 	benchRoutes(b, githubR2router, githubAPI)
 }
 
-// func BenchmarkRevel_GithubAll(b *testing.B) {
-// 	benchRoutes(b, githubRevel, githubAPI)
-// }
+//	func BenchmarkRevel_GithubAll(b *testing.B) {
+//		benchRoutes(b, githubRevel, githubAPI)
+//	}
 func BenchmarkRivet_GithubAll(b *testing.B) {
 	benchRoutes(b, githubRivet, githubAPI)
 }
-func BenchmarkTango_GithubAll(b *testing.B) {
-	benchRoutes(b, githubTango, githubAPI)
-}
+
 func BenchmarkTigerTonic_GithubAll(b *testing.B) {
 	benchRoutes(b, githubTigerTonic, githubAPI)
 }

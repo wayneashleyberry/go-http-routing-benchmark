@@ -13,12 +13,10 @@ var (
 		load func(routes []route) http.Handler
 	}{
 		{"Ace", loadAce},
-		{"Aero", loadAero},
 		{"Bear", loadBear},
 		{"Beego", loadBeego},
 		{"Bone", loadBone},
 		{"Chi", loadChi},
-		{"CloudyKitRouter", loadCloudyKitRouter},
 		{"Denco", loadDenco},
 		{"Echo", loadEcho},
 		{"Gin", loadGin},
@@ -36,11 +34,9 @@ var (
 		{"Macaron", loadMacaron},
 		{"Martini", loadMartini},
 		{"Pat", loadPat},
-		{"Possum", loadPossum},
 		{"R2router", loadR2router},
 		// {"Revel", loadRevel},
 		{"Rivet", loadRivet},
-		//{"Tango", loadTango},
 		{"TigerTonic", loadTigerTonic},
 		{"Traffic", loadTraffic},
 		{"Vulcan", loadVulcan},
@@ -63,7 +59,7 @@ func TestRouters(t *testing.T) {
 	loadTestHandler = true
 
 	for _, router := range routers {
-		req, _ := http.NewRequest("GET", "/", nil)
+		req, _ := http.NewRequest(http.MethodGet, "/", nil)
 		u := req.URL
 		rq := u.RawQuery
 
